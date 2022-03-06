@@ -1,9 +1,479 @@
-<html>
-    <head>
-        <meta charset="utf-8">
-        <script src="./crying.js"></script>
-    </head>
-    <body onload='m_e_m_o_r_y()'>
+<html><head>
+    <meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+button.bg-hide, button.bg-show:hover, button.bg-text, button.bg-text-show-bg:hover, button.opacity-increase, button.opacity-decrease, button.grayscale-increase, button.grayscale-decrease, button.button-blur, button.text-blur, button.bg-color, button.text-color, button.shadow-increase, button.shadow-float, button.shadow-decrease, button.scale-increase, button.scale-decrease, button.float-down, button.float-up, button.float-left, button.float-right, button.button-rotate, button.button-rotate-grow, button.button-rotate-shrink, button.skew-horizontal, button.skew-vertical, button.flip-horizontal, button.flip-vertical, button.increase-letter-space, button.icon-slide-left, button.icon-slide-right {
+  color: #FFF;
+  background: #2196F3;
+  border-color: #2196F3;
+}
+button.bg-hide:hover, button.bg-show, button.bg-text-show-border:hover, button.radial-out, button.radial-in, button.slide-down, button.slide-up, button.slide-left, button.slide-right, button.radius-increase, button.radius-decrease, button.border-dashed, button.border-dotted, button.border-color, button.border-text-color, button.swipe-overlay, button.swipe-overlay-out {
+  color: #2196F3;
+  border-color: #2196F3;
+  background: transparent;
+}
+button.bg-text:hover, button.bg-text-show-bg, button.bg-text-show-border {
+  color: #2196F3;
+  border-color: transparent;
+  background: transparent;
+}
+button.radial-out::after, button.radial-in::after, button.slide-down::after, button.slide-up::after, button.slide-left::after, button.slide-right::after, button.swipe-overlay::after, button.swipe-overlay-out::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #2196F3;
+  width: 150%;
+  padding-top: 150%;
+  transition: 0.25s ease;
+}
+.wrap div em, button.radial-out::after, button.radial-in::after, button.slide-down::after, button.slide-up::after, button.slide-left::after, button.slide-right::after, button.icon-slide-left::after, button.icon-slide-right::after {
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+button.radial-out, button.radial-in, button.slide-down, button.slide-up, button.slide-left, button.slide-right, button.swipe-overlay, button.swipe-overlay-out, button.icon-slide-left, button.icon-slide-right {
+  position: relative;
+  overflow: hidden;
+}
+button.shadow-increase:hover, button.shadow-float:hover, button.shadow-decrease {
+  box-shadow: 0 5px 5px -5px rgba(33, 150, 243, 0.15), 0 10px 10px -5px rgba(33, 150, 243, 0.15), 0 15px 15px -5px rgba(33, 150, 243, 0.15), 0 20px 20px -5px rgba(33, 150, 243, 0.15);
+}
+.wrap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 25px;
+  padding: 25px;
+}
+@media screen and (max-width: 1000px) {
+  .wrap {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (max-width: 800px) {
+  .wrap {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 600px) {
+  .wrap {
+    grid-template-columns: 1fr;
+  }
+}
+.wrap div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 25px;
+  position: relative;
+  border: 1px solid rgba(33, 150, 243, 0.25);
+}
+.wrap div p {
+  margin: 15px 0 0;
+  font-family: 'Ubuntu', sans-serif;
+}
+.wrap div em {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  font-style: normal;
+  font-size: 12px;
+  padding: 5px 10px;
+  background: #FFF;
+  border: 1px solid rgba(33, 150, 243, 0.25);
+}
+button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  border-width: 2px;
+  border-style: solid;
+  font-size: 20px;
+  font-family: 'Ubuntu', sans-serif;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+button > span {
+  position: relative;
+  z-index: 1;
+}
+button.radial-out, button.radial-in {
+  color: #FFF;
+}
+button.radial-out::after, button.radial-in::after {
+  border-radius: 999px;
+  top: 100%;
+}
+button.radial-out:hover, button.radial-in:hover {
+  color: #2196F3;
+}
+button.radial-out:hover:after, button.radial-in:hover:after {
+  top: 300%;
+}
+button.radial-in {
+  color: #2196F3;
+}
+button.radial-in::after {
+  top: 300%;
+}
+button.radial-in:hover {
+  color: #FFF;
+}
+button.radial-in:hover:after {
+  top: 100%;
+}
+button.slide-down, button.slide-up, button.slide-left, button.slide-right {
+  color: #FFF;
+}
+button.slide-down:hover, button.slide-up:hover, button.slide-left:hover, button.slide-right:hover {
+  color: #2196F3;
+}
+button.slide-down:hover:after, button.slide-up:hover:after, button.slide-left:hover:after, button.slide-right:hover:after {
+  top: 300%;
+}
+button.slide-up {
+  color: #2196F3;
+}
+button.slide-up::after {
+  top: 300%;
+}
+button.slide-up:hover {
+  color: #FFF;
+}
+button.slide-up:hover:after {
+  top: 50%;
+}
+button.slide-left:hover:after, button.slide-right:hover:after {
+  left: -90%;
+  top: 50%;
+}
+button.slide-right:hover:after {
+  left: 190%;
+}
+button.radius-increase:hover {
+  border-radius: 30px;
+}
+button.radius-decrease {
+  border-radius: 30px;
+}
+button.radius-decrease:hover {
+  border-radius: 6px;
+}
+button.border-dashed:hover {
+  border-style: dashed;
+}
+button.border-dotted:hover {
+  border-style: dotted;
+}
+button.opacity-increase {
+  opacity: 0.75;
+}
+button.opacity-increase:hover {
+  opacity: 1;
+}
+button.opacity-decrease:hover {
+  opacity: 0.75;
+}
+button.grayscale-increase:hover {
+  filter: grayscale(1);
+}
+button.grayscale-decrease {
+  filter: grayscale(1);
+}
+button.grayscale-decrease:hover {
+  filter: grayscale(0);
+}
+button.button-blur:hover {
+  filter: blur(6px);
+}
+button.text-blur:hover span {
+  filter: blur(6px);
+}
+button.bg-color:hover {
+  background: #FF4081;
+  border-color: #FF4081;
+}
+button.text-color:hover {
+  color: #FF4081;
+}
+button.border-color:hover, button.border-text-color:hover {
+  border-color: #FF4081;
+}
+button.border-text-color:hover {
+  color: #FF4081;
+}
+button.shadow-decrease:hover {
+  box-shadow: none;
+}
+button.shadow-float:hover {
+  transform: translateY(-6px);
+}
+button.scale-increase:hover {
+  transform: scale(1.1);
+}
+button.scale-decrease:hover {
+  transform: scale(0.9);
+}
+button.float-down:hover {
+  transform: translateY(6px);
+}
+button.float-up:hover {
+  transform: translateY(-6px);
+}
+button.float-left:hover {
+  transform: translateX(-6px);
+}
+button.float-right:hover {
+  transform: translateX(6px);
+}
+button.button-rotate:hover {
+  transform: rotate(-6deg);
+}
+button.button-rotate-grow:hover {
+  transform: rotate(-6deg) scale(1.1);
+}
+button.button-rotate-shrink:hover {
+  transform: rotate(-6deg) scale(0.9);
+}
+button.skew-horizontal:hover {
+  transform: skewX(-6deg);
+}
+button.skew-vertical:hover {
+  transform: skewY(-6deg);
+}
+button.flip-horizontal, button.flip-vertical {
+  transition: 0.5s ease;
+}
+button.flip-horizontal:hover, button.flip-vertical:hover {
+  transform: rotateY(360deg);
+}
+button.flip-vertical:hover {
+  transform: rotateX(360deg);
+}
+button.increase-letter-space:hover {
+  letter-spacing: 5px;
+}
+button.swipe-overlay::after, button.swipe-overlay-out::after {
+  transform: rotate(25deg);
+  top: -100%;
+  left: -190%;
+}
+button.swipe-overlay:hover, button.swipe-overlay-out:hover {
+  color: #FFF;
+}
+button.swipe-overlay:hover:after, button.swipe-overlay-out:hover:after {
+  left: -30%;
+}
+button.swipe-overlay-out::after {
+  transition: 0.5s ease;
+}
+button.swipe-overlay-out:hover {
+  color: #2196F3;
+}
+button.swipe-overlay-out:hover:after {
+  left: 130%;
+}
+button.icon-slide-left::after, button.icon-slide-right::after {
+  content: "👨&zwj;🚀";
+  position: absolute;
+  left: -20%;
+  transition: 0.25s ease;
+}
+button.icon-slide-left span, button.icon-slide-right span {
+  transition: 0.25s ease;
+}
+button.icon-slide-left:hover span, button.icon-slide-right:hover span {
+  margin-left: 20px;
+}
+button.icon-slide-left:hover:after, button.icon-slide-right:hover:after {
+  left: 20px;
+}
+button.icon-slide-right::after {
+  left: 120%;
+}
+button.icon-slide-right:hover span {
+  margin-left: 0;
+  margin-right: 20px;
+}
+button.icon-slide-right:hover:after {
+  left: calc(100% - 20px);
+}
 
-    </body>
-</html>
+</style>
+<title>ActiveSim</title>
+<meta charset="utf-8">
+<!--        b64> 7Juo7J207IqkIzEyMzQ=        -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+var visi_price = false;
+function price_() {
+    if(visi_price == false) {
+        document.querySelector("body > div.middle2").style.opacity = 1;
+        document.querySelector("body > div.middle").style.display = "none";
+        document.querySelector("body > div.middle2").style.display = "block";
+        visi_price = true;
+    }else if(visi_price == true){
+        document.querySelector("body > div.middle").style.display = "block";
+        document.querySelector("body > div.middle2").style.display = "none";
+        visi_price = false;
+    }else{
+        alert("?");
+    }
+}
+function z_x_s() {
+    if(visi_price == true) {
+        fadeOutEffect_close("body > div.middle2");
+        visi_price = false;
+        // return null;
+    }
+}
+    function fadeIn_() {
+        // document.querySelector("body > div.middle").style.opacity = 0;
+        var duration = 0.5;
+        var interval = 5;//ms
+        var op = 0.0;
+        var iop = 1;
+        var timer = setInterval(function () {
+            if (op >= iop) {
+                op = iop;
+                clearInterval(timer);
+            }
+            document.querySelector("body > div.middle").style.opacity = op;
+            op += iop/((1000/interval)*duration);
+        }, interval);
+    }
+function fadeIn() {
+    document.querySelector("body > div.middle").style.opacity = 0;
+    var fadeEffect = setInterval(function () {
+        var fadeTarget = document.querySelector("body > div.middle");
+        if (!fadeTarget.style.opacity) {
+            fadeTarget.style.opacity = 0;
+        }
+        // console.log(fadeTarget.style.opacity != 1 && fadeTarget.style.opacity < 1)
+        if (fadeTarget.style.opacity < 1) {
+            fadeTarget.style.opacity = fadeTarget.style.opacity + 0.09;
+        } else {
+            // console.log(fadeTarget.style.opacity != 1 && fadeTarget.style.opacity < 1)
+            console.log("end");
+            clearInterval(fadeEffect);
+        }
+    }, 10);
+}
+function fadeOutEffect_close(target_selector) {
+    var fadeTarget = document.querySelector(target_selector + "");
+    var fadeEffect = setInterval(function () {
+        if (!fadeTarget.style.opacity) {
+            fadeTarget.style.opacity = 1;
+        }
+        if (fadeTarget.style.opacity > 0) {
+            fadeTarget.style.opacity -= 0.09;
+        } else {
+            document.querySelector("body > div.middle").style.opacity = 0;
+            document.querySelector("body > div.middle").style.display = "block";
+            document.querySelector("body > div.middle2").style.display = "none";
+            console.log("end")            
+            fadeIn_();
+            clearInterval(fadeEffect);
+        }
+    }, 10);
+}
+</script>
+<style>
+.middle2 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+table {
+  width: 800px;
+  border-collapse: collapse;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+}
+th,
+td {
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+th {
+  text-align: left;
+}
+thead th {
+  background-color: #55608f;
+}
+tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+tbody td {
+  position: relative;
+}
+tbody td:hover:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -9999px;
+  bottom: -9999px;
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: -1;
+}
+@font-face {
+    font-family: 'SUIT-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Medium.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+.middle {
+  position: absolute; left: 50%; top: 50%; 
+  transform: translate(-50%, -50%); text-align: center;
+}</style>
+</head><body style="background: rgb(50,168,208);
+background: linear-gradient(144deg, rgba(50,168,208,0.819765406162465) 0%, rgba(134,31,249,0.6713060224089635) 100%);">
+<div class="middle" id="zxcfdsadf" style="display: block; opacity: 1;">
+
+<p id="xPdmxlz" style="font-family: 'SUIT-Medium';margin: 0;color:white;text-shadow: 0px 0px 7px rgb(105 105 105 / 79%);">빠르고 안전한 SMS 인증</p><h1 id="main_url" style="font-family: 'SUIT-Medium';margin: 0;color:white;text-shadow: 0px 0px 7px rgb(105 105 105 / 79%);">ActiveSim.KR</h1>
+<button class="opacity-decrease" style="font-family: 'SUIT-Medium';margin-top: 8px;height: auto;background: #79b2ff;border-color: transparent;box-shadow: 0px 0px 7px rgb(104 173 252 / 79%);  font-size: 15px;" onclick="price_();">가격 확인하기</button>
+
+</div>
+<div class="middle2" style="font-family: SUIT-Medium; display: none; opacity: 1;">
+<h2 id="main_url" style="font-family: 'SUIT-Medium'; margin-top: 0px; color:white;text-shadow: 0px 0px 7px rgb(105 105 105 / 79%);text-align: center;">ActiveSim 가격</h2>	
+<table>
+		<thead>
+			<tr>
+				<th>서비스</th>
+				<th>국가</th>
+				<th>가격</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>디스코드</td>
+				<td>러시아</td>
+				<td>700원</td>
+			</tr>
+			<tr>
+				<td>디스코드</td>
+				<td>미국</td>
+				<td>1500원</td>
+			</tr>
+			<tr>
+				<td>구글</td>
+				<td>미국</td>
+				<td>1500원</td>
+			</tr>
+		</tbody>
+	</table><div style="  margin-top: 8px; text-align: center;">
+<button class="opacity-decrease" style="font-family: 'SUIT-Medium';margin-top: 8px;height: auto;background: #79b2ff;border-color: transparent;box-shadow: 0px 0px 7px rgb(104 173 252 / 79%);  font-size: 15px;" onclick="z_x_s();">메인 화면 보기</button>
+</div>
+
+</div>
+</body></html>
